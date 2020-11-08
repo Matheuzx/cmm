@@ -3,7 +3,7 @@ grammar cmm;
 start : func* EOF
       ;
 
-func : 'def' name=ID '(' args? ')'  statms 
+func : 'def' name=ID '(' args? ')'  (statms | lambda)
      ;
 
 args : ID (',' ID)*
@@ -12,6 +12,8 @@ args : ID (',' ID)*
 statms : '{' statm* '}'
        | statm
        ;
+
+lambda : ('=>' | '->') expr ';' ;
 
 statm : ID '=' expr ';'                                       # assign
       | types ID '=' expr ';'                                 # attr
