@@ -14,13 +14,14 @@ statms : '{' statm* '}'
        ;
 
 statm : ID '=' expr ';'                                       # assign
+      | types ID '=' expr ';'                                 # attr
       | 'print' expr ';'                                      # print
       | 'if' cond=expr then=statms ('else' otherwise=statms)? # if
       | 'while' cond=expr statms                              # while
       | 'return' expr ';'                                     # return
       ;
 
-call : name=ID '(' exprs? ')' 
+call : name=ID '(' exprs? ')'
      ;
 
 exprs : expr (',' expr)*
@@ -37,13 +38,22 @@ mult : left=atom (op=('*'|'/') right=mult)*
 
 atom : '(' expr ')'
      | INT
+     | FLOAT
+     | BOOL
      | ID
      | 'input'
      | call
      ;
 
+types : INTEGER | FLOATING_POINT | BOOLEAN;
+
 INPUT : 'input';
 ELSE : 'else';
+INTEGER : 'int';
+FLOATING_POINT : 'float';
+BOOLEAN : 'bool';
 ID : [a-zA-Z]+[0-9a-zA-Z]*;
 INT : [0-9]+;
+FLOAT : INT[.]INT;
+BOOL : 'true' | 'false';
 WS : [ \r\n\t]+ -> skip;

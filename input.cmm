@@ -6,6 +6,9 @@ def fib(n) {
 }
 def main() {
     a = 10;
+    int b = 11;
+    float c = 12.22;
+    bool d = false;
     while a {
         print fib(input);
         a = a-1;
