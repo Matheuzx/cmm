@@ -5,7 +5,7 @@ def fib(n) {
     return fib(n-1)+fib(n-2);
 }
 def main() {
-    a = 10;
+    a = (10 > 5) && (2 < 10);
     int b = 11;
     float c = 12.22;
     bool d = false;

@@ -40,7 +40,7 @@ call : name=ID '(' exprs? ')'
 exprs : expr (',' expr)*
       ;
 
-expr : left=summ (op=('>'|'<'|'>='|'<='|'=='|'!=') right=expr)*
+expr : left=summ (op=('>'|'<'|'>='|'<='|'=='|'!='|'&&'|'||') right=expr)*
      ;
 
 summ : left=mult (op=('+'|'-') right=summ)*
