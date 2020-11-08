@@ -15,15 +15,24 @@ statms : '{' statm* '}'
 
 lambda : ('=>' | '->') expr ';' ;
 
-statm : ID '=' expr ';'                                       # assign
-      | types ID '=' expr ';'                                 # attr
-      | 'print' expr ';'                                      # print
-      | 'if' cond=expr then=statms ('else' otherwise=statms)? # if
-      | 'while' cond=expr statms                              # while
-      | 'switch' cond=expr '{' ('case' (INT | FLOAT | BOOL) ':' statm ('break;'?))+ ('default:' statm ('break;'?))? '}'  # switch
-      | 'for' types ID '=' expr ';' cond=expr ';' ID '=' expr statms # for
-      | 'return' expr ';'                                     # return
+statm : assignment ';'                                                # assign
+      | TYPES assignment ';'                                          # attr
+      | 'print' expr ';'                                              # print
+      | 'if' cond=expr then=statms ('else' otherwise=statms)?         # if
+      | 'while' cond=expr statms                                      # while
+      | 'switch' cond=expr '{' switch_case+ switch_default? '}'       # switch
+      | 'for' TYPES assignment ';' cond=expr ';' assignment statms    # for
+      | 'return' expr ';'                                             # return
       ;
+
+assignment : ID '=' expr
+     ;
+
+switch_case: ('case' TYPES_VALUES ':' statm ('break;'?))
+     ;
+
+switch_default: ('default:' statm ('break;'?))
+     ;
 
 call : name=ID '(' exprs? ')'
      ;
@@ -41,21 +50,13 @@ mult : left=atom (op=('*'|'/') right=mult)*
      ;
 
 atom : '(' expr ')'
-     | INT
-     | FLOAT
-     | BOOL
+     | TYPES_VALUES
      | ID
-     | 'input'
      | call
      ;
 
-types : INTEGER | FLOATING_POINT | BOOLEAN;
-
-INPUT : 'input';
-ELSE : 'else';
-INTEGER : 'int';
-FLOATING_POINT : 'float';
-BOOLEAN : 'bool';
+TYPES : 'int' | 'float' | 'bool';
+TYPES_VALUES: INT | FLOAT | BOOL;
 ID : [a-zA-Z]+[0-9a-zA-Z]*;
 INT : [0-9]+;
 FLOAT : INT[.]INT;

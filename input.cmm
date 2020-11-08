@@ -28,6 +28,8 @@ def main() {
         case 12:
             print b + 30;
             break;
+        default:
+            print b;
     }
 
     return 0;
