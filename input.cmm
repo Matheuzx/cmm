@@ -18,6 +18,18 @@ def main() {
         print i;
     }
 
+    switch b {
+        case 10:
+            print b + 10;
+            break;
+        case 11:
+            print b + 20;
+            break;
+        case 12:
+            print b + 30;
+            break;
+    }
+
     return 0;
 }
 def arrowFunction(a, b) => a * b;
