@@ -20,7 +20,7 @@ def main() {
 
     switch b {
         case 10:
-            print b + 10;
+            print (b + 10) * 50;
             break;
         case 11:
             print b + 20;
