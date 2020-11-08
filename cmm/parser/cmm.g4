@@ -20,6 +20,7 @@ statm : ID '=' expr ';'                                       # assign
       | 'print' expr ';'                                      # print
       | 'if' cond=expr then=statms ('else' otherwise=statms)? # if
       | 'while' cond=expr statms                              # while
+      | 'for' types ID '=' expr ';' cond=expr ';' ID '=' expr statms # for
       | 'return' expr ';'                                     # return
       ;
 
