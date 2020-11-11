@@ -4,9 +4,13 @@ def fib(n) {
 
     return fib(n-1)+fib(n-2);
 }
+def noargs() {
+    a2 = 10;
+}
 def main() {
+    fib(input);
     a = (10 > 5) && (2 < 10);
-    int b = 11;
+    int b = 11 + 2;
     float c = 12.22;
     bool d = false;
     while a {
@@ -31,6 +35,8 @@ def main() {
         default:
             print b;
     }
+
+    noargs();
 
     return 0;
 }

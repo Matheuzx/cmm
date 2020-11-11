@@ -17,6 +17,7 @@ lambda : ('=>' | '->') expr ';' ;
 
 statm : assignment ';'                                                # assign
       | TYPES assignment ';'                                          # attr
+      | call ';'                                                      # calling
       | 'print' expr ';'                                              # print
       | 'if' cond=expr then=statms ('else' otherwise=statms)?         # if
       | 'while' cond=expr statms                                      # while
